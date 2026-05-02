@@ -18,17 +18,20 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 const URI = process.env.MONGODB_URI;
 
-try {
-  mongoose.connect(URI);
-  console.log("Connected to MongoDB");
-} catch (error) {
-  console.log(error);
-}
+(async () => {
+  try {
+    await mongoose.connect(URI);
+    console.log("Connected to MongoDB");
+    
+    //routes
+    app.use("/api/user", userRoute);
+    app.use("/api/message", messageRoute);
 
-//routes
-app.use("/api/user", userRoute);
-app.use("/api/message", messageRoute);
-
-server.listen(PORT, () => {
-  console.log(`Server is Running on port ${PORT}`);
-});
+    server.listen(PORT, () => {
+      console.log(`Server is Running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("MongoDB connection error:", error.message);
+    process.exit(1); // exit if DB connection fails
+  }
+})();
