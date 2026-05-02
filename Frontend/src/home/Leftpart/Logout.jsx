@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { BiLogOutCircle } from "react-icons/bi";
-import API from "../api/axios";
+import API from "../../api/axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 function Logout() {
