@@ -39,7 +39,10 @@ Create a file named `.env` inside `Backend/` with this format:
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
 JWT_TOKEN=your_secret_key
+FRONTEND_URL=http://localhost:3001
 ```
+
+For production (e.g., Vercel), set `FRONTEND_URL` to your deployed frontend URL.
 
 ### 3. Install frontend dependencies
 
@@ -78,3 +81,43 @@ npm run dev
 
 - The frontend connects to the backend Socket.IO server at `http://localhost:5000`.
 - If you change the backend or frontend port, update the corresponding URLs in the source code.
+
+## Deployment
+
+### Deploy Backend on Render
+
+1. Push your code to GitHub
+2. Go to [Render](https://render.com) and create a new Web Service
+3. Connect your GitHub repo
+4. Set the start command to `npm start`
+5. Add environment variables:
+   - `MONGODB_URI=your_production_mongodb_uri`
+   - `JWT_TOKEN=your_secret_key`
+   - `FRONTEND_URL=https://your-frontend-url.vercel.app` (your Vercel frontend URL)
+6. Deploy
+
+### Deploy Frontend on Vercel
+
+1. Push your Frontend folder to GitHub (or your entire repo)
+2. Go to [Vercel](https://vercel.com) and import your repo
+3. Select the `Frontend` folder as the root
+4. Set the framework to **Vite**
+5. Build command: `npm run build`
+6. Output directory: `dist`
+7. Deploy
+
+### Update Frontend Socket URL for Production
+
+Before deploying the frontend, update the Socket.IO connection URL in [Frontend/src/context/SocketContext.jsx](Frontend/src/context/SocketContext.jsx):
+
+Change:
+```javascript
+const socket = io("http://localhost:5000", {
+```
+
+To:
+```javascript
+const socket = io("https://your-render-backend-url.com", {
+```
+
+Then commit and push to trigger a Vercel redeploy.
