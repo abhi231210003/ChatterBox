@@ -8,7 +8,7 @@ and live message delivery with Socket.IO.
 
 - Frontend: React + Vite + Tailwind CSS
 - Backend: Node.js + Express
-- Database: MongoDB
+- Database: MongoDB 
 - Realtime: Socket.IO
 - Authentication: JWT-based login and protected routes
 
