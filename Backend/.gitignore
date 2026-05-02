@@ -1,1 +1,10 @@
+<<<<<<< HEAD
 .env
+=======
+.env
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+>>>>>>> 3328c44 (code)
