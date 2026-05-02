@@ -26,12 +26,12 @@ const URI = process.env.MONGODB_URI;
     //routes
     app.use("/api/user", userRoute);
     app.use("/api/message", messageRoute);
-
+    
     server.listen(PORT, () => {
       console.log(`Server is Running on port ${PORT}`);
     });
   } catch (error) {
-    console.error("MongoDB connection error:", error.message);
-    process.exit(1); // exit if DB connection fails
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
   }
 })();
